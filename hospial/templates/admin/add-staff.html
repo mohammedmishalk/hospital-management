@@ -5,24 +5,24 @@
 <table cellspacing="2"  cellpadding="5" border="0">
 <tr>
 <td >Name :</td>
-<td><input type="text" placeholder="Enter Doctor Name" class="tb" /></td>
+<td><input type="text" placeholder="Enter Doctor Name" class="tb" name="staffname" /></td>
 </tr>
 <tr>
 <td >Place :</td>
-<td><input type="text" placeholder="place" class="tb" /></td>
+<td><input type="text" placeholder="place" class="td" name="place" /></td>
 </tr>
 <tr>
 <td>Pin code:</td>
-<td><input type="number" placeholder="Pin code" class="tb" /></td>
+<td><input type="number" placeholder="Pin code" class="tb" name="pin"/></td>
 </tr>
 <tr>
     <td>Post:</td>
-    <td><input type="text" placeholder="Post" class="tb" /></td>
+    <td><input type="text" placeholder="Post" class="tb" name="post" /></td>
     </tr>
 <tr>
     <tr>
         <td>Department</td>
-        <td><select>
+        <td><select name="select">
             <option value="Department">Choose</option>
             <option value="#">#</option>
             <option value="#">#</option>
@@ -40,21 +40,17 @@
 </tr>
 <tr>
 <td >year of expreies :</td>
-<td><input type="number" /></td>
+<td><input type="number" name="exp"/></td>
 </tr>
 <td >Emial :</td>
-<td><input type="email" required></td>
+<td><input type="email" name="email" required></td>
 </tr>
-<tr>
-    <td >licenes:</td>
-    <td><input type="file" /></td>
-    </tr>
     <tr>
         <td > Phone no :</td>
-        <td><input type="number" /></td>
+        <td><input type="number" name="no"/></td>
         </tr>
         <td >Image:</td>
-        <td><input type="file" /></td>
+        <td><input type="file" name="image"/></td>
         </tr>
 
 <tr>
@@ -63,6 +59,7 @@
 <input type="reset"/>
 <input type="button" value="ADD"></td>
 </tr>
+</table>
 </form>
 </body>
 

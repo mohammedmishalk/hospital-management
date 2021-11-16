@@ -19,10 +19,15 @@ from . import views
 
 urlpatterns = [
     path("login_load/",views.login_load),
+    path("login_load_post", views.login_load_post),
     path("admin_add_shedule_load/",views.admin_add_shedule_load),
+    path("admin_add_shedule_load_post/", views.admin_add_shedule_load_post),
     path("admin_add_doctor_load/", views.admin_add_doctor_load),
+    path("admin_add_doctor_load_post/", views.admin_add_doctor_load_post),
     path("admin_add_staff_load/", views.admin_add_staff_load),
+    path("admin_add_staff_load_post/", views.admin_add_staff_load_post),
     path("admin_add_dept_load/", views.admin_add_dept_load),
+    path("admin_add_dept_load_post/", views.admin_add_dept_load_post),
     path("admin_adminviewdept_load/",views.admin_adminviewdept_load),
     path("admin_edit_dept/",views.admin_edit_dept),
     path("admin_edit_staff/",views.admin_edit_staff),

@@ -21,7 +21,7 @@ class doctor(models.Model):
     dplace= models.CharField(max_length=50)
     dpin= models.CharField(max_length=50)
     dpost = models.CharField(max_length=50)
-    yearexperience = models.CharField(max_length=50)
+    experience = models.CharField(max_length=50)
     licence= models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     email= models.CharField(max_length=50)
@@ -35,7 +35,7 @@ class staff(models.Model):
     splace= models.CharField(max_length=50)
     spin= models.CharField(max_length=50)
     spost = models.CharField(max_length=50)
-    yearexperience = models.CharField(max_length=50)
+    xperience = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     email= models.CharField(max_length=50)
     LOGIN=models.ForeignKey(login,on_delete=models.CASCADE,default=0)
@@ -50,15 +50,15 @@ class schedule(models.Model) :
 
 class leavereq(models.Model):
     STAFFID = models.ForeignKey(staff, on_delete=models.CASCADE, default=0)
-    leaveneeddate= models.CharField(max_length=50)
-    requestdate = models.CharField(max_length=50)
+    leave_need_date= models.CharField(max_length=50)
+    request_date = models.CharField(max_length=50)
     des = models.CharField(max_length=50)
 
 
 class attendance(models.Model):
     STAFFID = models.ForeignKey(staff, on_delete=models.CASCADE, default=0)
-    checkintime = models.CharField(max_length=50)
-    checkouttime = models.CharField(max_length=50)
+    checkin_time = models.CharField(max_length=50)
+    checkout_time = models.CharField(max_length=50)
     date= models.CharField(max_length=50)
 
 
@@ -71,15 +71,14 @@ class booking(models.Model):
 
 
 class user(models.Model):
-    userfirstname = models.CharField(max_length=50)
-    userlastname = models.CharField(max_length=50)
+    firstname = models.CharField(max_length=50)
+    lastname = models.CharField(max_length=50)
     uimage = models.CharField(max_length=50)
     dob = models.CharField(max_length=50)
-    address = models.CharField(max_length=50)
-    uplace= models.CharField(max_length=50)
-    upin= models.CharField(max_length=50)
-    upost = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
-    email= models.CharField(max_length=50)
+    email = models.CharField(max_length=50)
+    uplace= models.CharField(max_length=50)
+    upost = models.CharField(max_length=50)
+    udistrict = models.CharField(max_length=50)
+    upin= models.CharField(max_length=50)
     LOGIN=models.ForeignKey(login,on_delete=models.CASCADE,default=0)
-    
