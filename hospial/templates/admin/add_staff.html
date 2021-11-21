@@ -1,5 +1,5 @@
 <body>
-    <form>
+    <form method="post" action="/hospial/admin_add_staff_load_post/" enctype="multipart/form-data">
 
 <h2>Add Staff detailes</h2>
 <table cellspacing="2"  cellpadding="5" border="0">
@@ -23,43 +23,44 @@
     <tr>
         <td>Department</td>
         <td><select name="select">
-            <option value="Department">Choose</option>
-            <option value="#">#</option>
-            <option value="#">#</option>
-            <option value="#">#</option>
+            {% for i in data %}
+                <option value="{{ i.id }}">{{ i.deptname }}</option>
+            {% endfor %}
           </select></td>
         </tr>
-<td >Gender :</td>
-<td><input type="radio" id="html" name="fav_language" value="HTML">
-    <label for="html">male</label>
-    <input type="radio" name="fav_language" value="CSS">
-    <label>female</label>
-    <input type="radio" name="fav_language" value="CSS">
-    <label>other</label>
-</td>
-</tr>
-<tr>
-<td >year of expreies :</td>
-<td><input type="number" name="exp"/></td>
-</tr>
-<td >Emial :</td>
-<td><input type="email" name="email" required></td>
-</tr>
+    <tr>
+        <td >Gender :</td>
+        <td><input type="radio" id="html" name="fav_language" value="male">
+            <label for="html">male</label>
+            <input type="radio" name="fav_language" value="female">
+            <label>female</label>
+            <input type="radio" name="fav_language" value="other">
+            <label>other</label>
+        </td>
+    </tr>
+    <tr>
+        <td >year of expreies :</td>
+        <td><input type="number" name="exp"/></td>
+    </tr>
+    <tr>
+        <td >Emial :</td>
+        <td><input type="email" name="email" required></td>
+    </tr>
     <tr>
         <td > Phone no :</td>
         <td><input type="number" name="no"/></td>
         </tr>
+    <tr>
         <td >Image:</td>
         <td><input type="file" name="image"/></td>
-        </tr>
+    </tr>
 
-<tr>
-<td></td>
-<td>
-<input type="reset"/>
-<input type="button" value="ADD"></td>
-</tr>
-</table>
+    <tr>
+    <td colspan="2" align="center">
+    <input type="reset"/>
+    <input type="submit" value="ADD"></td>
+    </tr>
+    </table>
 </form>
 </body>
 

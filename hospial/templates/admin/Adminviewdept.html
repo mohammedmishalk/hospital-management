@@ -1,19 +1,26 @@
 <body>
-<input type="text"><button>Search</button>
+<form method="post" action="/hospial/admin_view_serach/">
 <table border="1" >
+<tr>
+    <td><input type="text" value="" name="n1"><input type="submit" value="search"></td>
+</tr>
     <tr>
 <th>No</th>
 <th>Department Name</th>
 <th>description</th>
 <th></th>
 </tr>
+    {% for i in data %}
 <tr>
+    <td> {{ i.id }}</td>
+    <td>{{ i.deptname }}</td>
+    <td>{{ i.des }}</td>
     <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><a href="/hospial/admin_delect_dept/{{ i.id }}">delete</a></td>
     <td><a>edit</a></td>
-    <td><a>delect</a></td>
 
 </tr>
+    {% endfor %}
+</table>
+</form>
 </body>

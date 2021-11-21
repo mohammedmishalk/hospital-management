@@ -1,6 +1,9 @@
 <body>
-<input type="text" placeholder="Doctor nmae"><button>Search</button>
+<form method="post" action="/hospial/admin_schedule_search/">
 <table border="1" >
+  <tr>
+<td colspan="9">Date from<input type="date" value="" name="d1" placeholder="Search by schedule ">To<input type="date" value="" name="d2" placeholder="Search by schedule "><input type="submit" name="btn" value="search"></td>
+  </tr>
     <tr>
 <th>No</th>
 <th>Added on</th>
@@ -9,17 +12,21 @@
 <th>from</th>
 <th>To</th>
 </tr>
+    {% for i in data %}
 <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>{{ i.id }}</td>
+    <td>{{ i.added_date }}</td>
+    <td>{{ i.DOCID.doctorname }}</td>
+    <td>{{ i.day }}</td>
+    <td>{{ i.fromtime }}</td>
+    <td>{{ i.totime }}</td>
     <td><a>edit</a></td>
-    <td><a>delect</a></td>
-    <td><a>Bokking</a></td>
+    <td><a href="/hospial/admin_delect_schedule/{{ i.id }}">delect</a></td>
+    <td><a>Booking</a></td>
 
 
 </tr>
+    {% endfor %}
+</table>
+</form>
 </body>

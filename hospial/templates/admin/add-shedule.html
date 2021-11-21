@@ -1,13 +1,13 @@
 <body>
+<form method="post" action="/hospial/admin_add_shedule_load_post/" >
     <table cellspacing="2"  cellpadding="5" border="0">
 <tr>
 <td>Doctor name:</td>
-<td><select name="select">
-    <option value="Department">Select</option>
-    <option value="#">#</option>
-    <option value="#">#</option>
-    <option value="#">#</option>
-  </select></td>
+  <td><select name="select">
+            {% for i in data %}
+                <option value="{{ i.id }}">{{ i.doctorname }}</option>
+            {% endfor %}
+          </select></td>
 </tr>   
 <br>
 <tr>
@@ -16,11 +16,11 @@
 </tr>
 <tr>
     <td>  <label for="from">from:</label></td>
-    <td>  <input type="date" name="from"></td>
+    <td>  <input type="time" name="from"></td>
     </tr>
     <tr>
         <td>  <label for="To">To :</label></td>
-        <td>  <input type="date" name="to"></td>
+        <td>  <input type="time" name="to"></td>
         </tr>
         
 <tr>

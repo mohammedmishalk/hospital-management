@@ -1,7 +1,18 @@
 <body>
-    <input type="text"  placeholder="Name" ><button>Search</button>
+<h2><u>Staff detailes</u></h2>
+<form method="post" action="/hospial/admin_view_staff_serach/">
        <table border="1" >
-           <tr>
+        <tr>
+    <td><input type="text" value="" name="n2" placeholder="Searc by Staff name"><input type="submit" name="btn" value="search"></td>
+        <td>choose dept<select name="select">
+             {% for i in dept %}
+              <option value="{{ i.id }}">{{ i.deptname }}</option>
+            {% endfor %}
+
+        </select>
+        <input type="submit" name="btn" value="go">
+        </td>
+</tr>
        <th>No</th>
        <th>Name</th>
        <th>Image</th>
@@ -10,16 +21,19 @@
        <th>expreies</th>
        <th>Contact</th>
        </tr>
+            {% for i in data %}
        <tr>
+           <td>{{ i.id }}</td>
+           <td>{{ i.sname }}</td>
            <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
+           <td>{{ i.splace }}<br>{{ i.spin }}<br>{{ i.spost }}</td>
+           <td>{{ i.DEPID.deptname }}</td>
+           <td>{{ i.xperience }}</td>
+           <td>{{ i.phone }}</td>
            <td><a>edit</a></td>
            <td><a>delect</a></td>
        
        </tr>
+            {% endfor %}
+       </table>
        </body>

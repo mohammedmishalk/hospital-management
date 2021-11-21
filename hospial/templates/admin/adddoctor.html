@@ -1,5 +1,5 @@
 <body>
-        <form>
+        <form method="post" action="/hospial/admin_add_doctor_load_post/"  enctype="multipart/form-data">
 
 	<h2>Add Doctor detailes</h2>
 	<table cellspacing="2"  cellpadding="5" border="0">
@@ -21,23 +21,22 @@
         </tr>
 	<tr>
         <tr>
-            <td>Department</td>
-            <td><select name="select">
-                <option value="Department">Choose</option>
-                <option value="#">#</option>
-                <option value="#">#</option>
-                <option value="#">#</option>
-              </select></td>
-            </tr>
+            <tr>
+        <td>Department</td>
+        <td><select name="select">
+            {% for i in data %}
+                <option value="{{ i.id }}">{{ i.deptname }}</option>
+            {% endfor %}
+          </select></td>
+        </tr>
 	<td >Gender :</td>
-	<td><input type="radio" id="html" name="fav_language" value="HTML">
+	<td><input type="radio" id="html" name="fav_language" value="male">
         <label for="html">male</label>
-        <input type="radio" name="fav_language" value="CSS">
+        <input type="radio" name="fav_language" value="female">
         <label>female</label>
-        <input type="radio" name="fav_language" value="CSS">
+        <input type="radio" name="fav_language" value="other">
         <label>other</label>
     </td>
-	</tr>
 	<tr>
 	<td >year of expreies :</td>
 	<td><input type="number" name="exp"/></td>
@@ -61,7 +60,7 @@
 	<td></td>
 	<td>
 	<input type="reset"/>
-	<input type="button" value="ADD"></td>
+	<input type="submit" value="ADD"></td>
 	</tr>
     </table>
 </form>
