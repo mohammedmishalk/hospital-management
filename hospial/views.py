@@ -241,7 +241,9 @@ def admin_view__staff_serach(request):
         res = staff.objects.filter(DEPID_id=depts)
         return render(request, "admin/viewstaff.html", {'data': res,'dept':dep})
 
-
+def admin_delect_staff(request,staffid ):
+        staff.objects.filter(id=staffid).delete()
+        return HttpResponse("<script>alert('success');window.location='/hospial/admin_view_staff/'</script>")
 
 #doctor
 

@@ -81,7 +81,7 @@ DATABASES = {
         'NAME':  'hospital_management',
         'HOST':'localhost',
         'USER':'root',
-        'PASSWORD':'',
+        'PASSWORD':'1234',
     }
 }
 
