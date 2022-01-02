@@ -199,7 +199,6 @@ def admin_update_doctor(request):
     doc_email = request.POST['email']
     doc_number = request.POST['no']
     did=request.POST['did']
-    print(did)
     # if 'file' in request.FILES:
     #      doc_lisence = request.FILES['file']
     if 'image' in request.FILES:
