@@ -161,19 +161,60 @@ def admin_delect_dept(request,deptid):
     dept.objects.filter(id=deptid).delete()
     return HttpResponse("<script>alert('success');window.location='/hospial/admin_adminviewdept_load/'</script>")
 
-def admin_edit_dept(request):
-    return render(request,"admin/edit-dept.html")
+def admin_edit_dept(request,depid):
+    dep=dept.objects.get(id=depid)
+    return render(request,"admin/edit-dept.html",{'data':dep})
 
-def admin_edit_staff(request):
-    return render(request,"admin/edit-staff.html")
+def admin_edit_staff(request,sid):
+    staf=staff.objects.get(id=sid)
+    dept_obj=dept.objects.all()
+    return render(request,"admin/edit-staff.html",{'data':staf,'dept':dept_obj})
 
+def admin_update_staff(request) :   
+    staff_name=request.POST['staffname']
+    staff_place = request.POST['place']
+    staff_pin = request.POST['pin']
+    staff_post = request.POST['post']
+    staff_department = request.POST['select']
+    staff_gender = request.POST['fav_language']
+    staff_experiense = request.POST['exp']
+    staff_email = request.POST['email']
+    staff_number = request.POST['no']
+    staff_image = request.FILES['image']
+    
 
-def admin_edit_doctor(request):
+def admin_edit_doctor(request,did):
+    doc=doctor.objects.get(id=did)
+    dept_obj=dept.objects.all()
+    return render(request,"admin/editdoctor.html",{'data':doc,'dept':dept_obj})
+
+def admin_update_doctor(request):
+    doc_name=request.POST['name']
+    doc_place = request.POST['place']
+    doc_pin = request.POST['pin']
+    doc_post = request.POST['post']
+    doc_department = request.POST['select']
+    doc_gender = request.POST['fav_language']
+    doc_experiense = request.POST['exp']
+    doc_email = request.POST['email']
+    doc_number = request.POST['no']
+    did=request.POST['did']
+    print(did)
+    # if 'file' in request.FILES:
+    #      doc_lisence = request.FILES['file']
+    if 'image' in request.FILES:
+          doc_image = request.FILES['image']
+          if doc_image.filename!='':
+              doctor.objects.filter(id=did).update(doctorname=doc_name,dplace=doc_place,dpin=doc_pin,dpost=doc_post,experience=doc_experiense,phone=doc_number,email=doc_email,dgender=doc_gender,dimage=doc_image)
+          else:
+               doctor.objects.filter(id=did).update(doctorname=doc_name,dplace=doc_place,dpin=doc_pin,dpost=doc_post,experience=doc_experiense,phone=doc_number,email=doc_email,dgender=doc_gender)
+    else :
+          doctor.objects.filter(id=did).update(doctorname=doc_name,dplace=doc_place,dpin=doc_pin,dpost=doc_post,experience=doc_experiense,phone=doc_number,email=doc_email,dgender=doc_gender)
     return render(request,"admin/editdoctor.html")
 
-
-def admin_edit_schedule(request):
-    return render(request,"admin/edit-schedule.html")
+def admin_edit_schedule(request,shid):
+    shedul=schedule.objects.get(id=shid)
+    return render(request,"admin/edit-schedule.html",{'data':shedul})
 
 def admin_leave_req(request):
     return render(request,"admin/leave-request.html")

@@ -1,67 +1,88 @@
-<body xmlns="http://www.w3.org/1999/html">
-    <form>
+<body>
+    <form method="post" action="/hospial/admin_update_doctor/"  enctype="multipart/form-data">
 
 <h2>Edit Doctor detailes</h2>
 <table cellspacing="2"  cellpadding="5" border="0">
 <tr>
-<td >Name :</td>
-<td><input type="text" placeholder="Enter Doctor Name" class="tb" /></td>
+<td >Name :<input type="hidden" value={{data.id}} name='did'></td>
+<td><input type="text" placeholder="Enter Doctor Name" class="tb"  name="name" value={{data.doctorname}} ></td>
 </tr>
 <tr>
 <td >Place :</td>
-<td><input type="text" placeholder="place" class="tb" /></td>
+<td><input type="text" placeholder="place" class="tb" name="place" value={{data.dplace}}></td>
 </tr>
 <tr>
 <td>Pin code:</td>
-<td><input type="number" placeholder="Pin code" class="tb" /></td>
+<td><input type="number" placeholder="Pin code" class="tb" name="pin" value={{data.dpin}}></td>
 </tr>
 <tr>
     <td>Post:</td>
-    <td><input type="text" placeholder="Post" class="tb" /></td>
+    <td><input type="text" placeholder="Post" class="tb"  name="post" value={{data.dpost}}></td>
     </tr>
 <tr>
     <tr>
         <td>Department</td>
-        <td><select>
-            <option value="Department">Choose</option>
-            <option value="#">#</option>
-            <option value="#">#</option>
-            <option value="#">#</option>
+        <td><select  name="select">
+    DEPID = models.ForeignKey(dept, on_delete=models.CASCADE, default=1)
+            <option value="{{data.DEPID.id}}">{{data.DEPID.deptname}}</option>
+            <option>--select</option>
+            {% for i in dept %}
+                <option value="{{ i.id }}">{{ i.deptname }}</option>
+            {% endfor %}
           </select></td>
         </tr>
 <td >Gender :</td>
-<td><input type="radio" id="html" name="fav_language" value="HTML">
+<td>
+    {% ifequal data.dgender "male" %}
+    <input type="radio" id="html" name="fav_language" value="male" checked>
     <label for="html">male</label>
-    <input type="radio" name="fav_language" value="CSS">
+    <input type="radio" name="fav_language" value="female">
     <label>female</label>
-    <input type="radio" name="fav_language" value="CSS">
+    <input type="radio" name="fav_language" value="other">
     <label>other</label>
+    {% endifequal %}
+    {% ifequal data.dgender "female" %}
+    <input type="radio" id="html" name="fav_language" value="male">
+    <label for="html">male</label>
+    <input type="radio" name="fav_language" value="female" checked>
+    <label>female</label>
+    <input type="radio" name="fav_language" value="other">
+    <label>other</label>
+    {%endifequal%}
+    {% ifequal data.dgender "other" %}
+    <input type="radio" id="html" name="fav_language" value="male">
+    <label for="html">male</label>
+    <input type="radio" name="fav_language" value="female">
+    <label>female</label>
+    <input type="radio" name="fav_language" value="other" checked>
+    <label>other</label>
+    {%endifequal%}
 </td>
 </tr>
 <tr>
 <td >year of expreies :</td>
-<td><input type="number" /></td>
+<td><input type="number"  name="exp" value={{data.experience}}></td>
 </tr>
 <td >Emial :</td>
-<td><input type="email" required></td>
+<td><input type="email" name="email" value={{data.email}} required></td>
 </tr>
 <tr>
     <td >licenes:</td>
-    <td><input type="file" /></td>
+    <td><input type="file"  name="file" value={{data.licence}} ></td>
     </tr>
     <tr>
         <td > Phone no :</td>
-        <td><input type="number" /></td>
+        <td><input type="number" name="no" value={{data.phone}} ></td>
         </tr>
         <td >Image:</td>
-        <td><input type="file" /></td>
+        <td><input type="file"  name="image" value={{data.dimage}} ></td>
         </tr>
 
 <tr>
 <td></td>
 <td>
 <input type="reset"/>
-<input type="button" value="ADD"></td>
+<input type="submit" value="ADD"></td>
 </tr>
 </table>
 </form>
