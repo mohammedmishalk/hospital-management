@@ -31,6 +31,7 @@ urlpatterns = (
     path("admin_adminviewdept_load/", views.admin_adminviewdept_load),
     path("admin_edit_dept/<deptid>", views.admin_edit_dept),
     path("admin_edit_staff/<sid>", views.admin_edit_staff),
+    path("admin_update_staff/", views.admin_update_staff),
     path("admin_edit_doctor/<did>", views.admin_edit_doctor),
     path("admin_update_doctor/", views.admin_update_doctor),
     path("admin_edit_schedule/<shid>", views.admin_edit_schedule),

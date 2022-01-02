@@ -170,7 +170,7 @@ def admin_edit_staff(request,sid):
     dept_obj=dept.objects.all()
     return render(request,"admin/edit-staff.html",{'data':staf,'dept':dept_obj})
 
-def admin_update_staff(request) :   
+def admin_update_staff(request) :  
     staff_name=request.POST['staffname']
     staff_place = request.POST['place']
     staff_pin = request.POST['pin']
@@ -180,8 +180,18 @@ def admin_update_staff(request) :
     staff_experiense = request.POST['exp']
     staff_email = request.POST['email']
     staff_number = request.POST['no']
-    staff_image = request.FILES['image']
-    
+
+    sid=request.POST['sid']
+
+    if 'image' in request.FILES:
+        staff_image = request.FILES['image']
+        if staff_image.filename!='':
+            staff.objects.filter(id=sid).update(sname=staff_name,simage=staff_image,splace=staff_place,spin=staff_pin,spost=staff_post,phone=staff_number,email=staff_email,sgender=staff_gender)
+        else:
+            staff.objects.filter(id=sid).update(sname=staff_name,splace=staff_place,spin=staff_pin,spost=staff_post,phone=staff_number,email=staff_email,sgender=staff_gender)
+    else:
+        staff.objects.filter(id=sid).update(sname=staff_name,splace=staff_place,spin=staff_pin,spost=staff_post,phone=staff_number,email=staff_email,sgender=staff_gender)
+    return render(request,"admin/edit-staff.html")
 
 def admin_edit_doctor(request,did):
     doc=doctor.objects.get(id=did)
@@ -199,7 +209,6 @@ def admin_update_doctor(request):
     doc_email = request.POST['email']
     doc_number = request.POST['no']
     did=request.POST['did']
-    print(did)
     # if 'file' in request.FILES:
     #      doc_lisence = request.FILES['file']
     if 'image' in request.FILES:
