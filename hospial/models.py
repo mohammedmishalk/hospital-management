@@ -44,7 +44,7 @@ class staff(models.Model):
     DEPID = models.ForeignKey(dept, on_delete=models.CASCADE, default=1)
 
 class schedule(models.Model) :
-    day=models.DateField(max_length=50)
+    day=models.CharField(max_length=50)
     fromtime= models.CharField(max_length=50)
     totime = models.CharField(max_length=50)
     added_date = models.CharField(max_length=50)

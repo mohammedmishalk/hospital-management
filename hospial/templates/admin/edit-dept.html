@@ -1,15 +1,17 @@
-<form>
+<form method="post" action="/hospial/admin_update_dept/" >
+    {% csrf_token %}
     <table border="0">
         <tr>
-       <td><label for="Name">Department Name:</label>
-    <input type="text" id="username" name="username"></td> 
+            <td>Department Name:<input type="hidden" value={{data.id}} name='depid'></td>
+    <td><input type="text" id="username" name="username" value={{data.deptname}}></td>
    </tr>
 
     <tr>
-    <td> <textarea name="message" rows="10" cols="30">description</textarea>
+        <td> Description</td>
+        <td><textarea name="message" rows="10" cols="30" >{{data.des}}</textarea></td>
     </tr>
         <tr>    
-    <td>  <input type="submit" value="ADD"></td> 
+    <td colspan="2" align="center">  <input type="submit" value="ADD"></td>
 </tr>
     </table>
     </form>
