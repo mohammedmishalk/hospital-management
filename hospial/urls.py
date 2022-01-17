@@ -36,7 +36,7 @@ urlpatterns = (
     path("admin_edit_doctor/<did>", views.admin_edit_doctor),
     path("admin_update_doctor/", views.admin_update_doctor),
     path("admin_edit_schedule/<sch>", views.admin_edit_schedule),
-     path("admin_update_schedule/", views.admin_update_schedule),
+    path("admin_update_schedule/", views.admin_update_schedule),
     path("admin_leave_req/", views.admin_leave_req),
     path("admin_view_attends/", views.admin_view_attends),
     path("admin_view_doctor/", views.admin_view_doctor),
@@ -51,6 +51,7 @@ urlpatterns = (
     path("admin_view_serach/", views.admin_view_serach),
     path("admin_view_doc_serach/", views.admin_view__doc_serach),
     path("admin_view_staff_serach/", views.admin_view__staff_serach),
-    path("admin_schedule_search/", views.admin_schedule_search)
+    path("admin_schedule_search/", views.admin_schedule_search),
+    path("adminviewdoctorschedule/<id>", views.adminviewdoctorschedule),
 
 )

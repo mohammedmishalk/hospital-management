@@ -567,7 +567,7 @@ def update_booking(request):
 
 def view_profile(request):
 
-    return render(request,"view_profile.html")
+    return render(request,"view_profi(le.html")
 
 
 def view_schedule(request):
@@ -592,6 +592,14 @@ def view_profile(request):
 
     return render(request,"view_profile.html")
 
+def adminviewdoctorschedule(request,id):
+    sch=schedule.objects.filter(DOCID__id=id)
+    return render(request,"admin/bookingSchedule.html",{'data':sch})
+
+
+
+
+
 
 #user
 
@@ -600,6 +608,25 @@ def user_registor(request):
     return render(request,"user_registor.html")
 
 
+def  admin_add_user_load(request):
+
+    user=user.objects.all()
+
+    return render(request,"user/user-regesister.html", {'data':user})
+
+def admin_user_load_post(request):
+    user_name=request.POST['fn']
+    user_last=request.POST['f2']
+    user_pass=request.POST['pass']
+    user_no=request.POST['no']
+    user_email=request.POST['mail']
+    user_gender=request.POST['g']
+    user_dob=request.POST['dob']
+    user_profile=request.POST['dp']
+    user_place=requesrt.POST['place']
+    user_pincode=request.POST['pin']
+    user_post=request.POST['post']
+    return render(request,"user/user-regesister.html")
 
 
 

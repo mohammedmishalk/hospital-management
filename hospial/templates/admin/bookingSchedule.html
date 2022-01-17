@@ -1,0 +1,22 @@
+<body>
+    <form>
+    <table border="1" >
+        <tr>
+    <th>No</th>
+    <th>Added on</th>
+    <th>day</th>
+    <th>from</th>
+    <th>To</th>
+    </tr>
+    {% for i in data %}
+    <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.added_date }}</td>
+        <td>{{ i.day }}</td>
+        <td>{{ i.fromtime }}</td>
+        <td>{{ i.totime }}</td>
+    </tr>
+        {% endfor %}
+    </table>
+    </form>
+    </body>
