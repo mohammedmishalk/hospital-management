@@ -32,15 +32,17 @@ def login_load_post(request):
 
     ps_word = request.POST['password']
 
-    login_obj=login()
+    login_obj=login.objects.filter(username=user_name,password=ps_word)
 
-    login_obj.username=user_name
-
-    login_obj.password=ps_word
-
-    login_obj.save()
-
-    return render(request, 'login.html')
+    if login_obj.exists():
+        if login_obj.type=="user":
+            return("user")
+    elif login_obj.type=="staff":
+            return("staff")
+    elif login_obj.type=="doctor":
+        return("doctor")
+    else:
+        return("admin")   
 
 
 def  admin_Home(request):
@@ -485,12 +487,12 @@ def admin_delect_doctor(request,docid):
 
 
 
-def admin_view_shedule(request):
+def admin_view_shedule(request,docid):
 
-    schedu=schedule.objects.all()
+    schedu=schedule.objects.filter(id=docid)
 
     return render(request,"admin/view-schedule.html",{'data':schedu})
-
+                   
 
 def admin_schedule_search(request):
 
@@ -610,9 +612,8 @@ def user_registor(request):
 
 def  admin_add_user_load(request):
 
-    user=user.objects.all()
 
-    return render(request,"user/user-regesister.html", {'data':user})
+    return render(request,"user/user-regesister.html")
 
 def admin_user_load_post(request):
     user_name=request.POST['fn']
@@ -623,14 +624,36 @@ def admin_user_load_post(request):
     user_gender=request.POST['g']
     user_dob=request.POST['dob']
     user_profile=request.POST['dp']
-    user_place=requesrt.POST['place']
+    user_place=request.POST['place']
     user_pincode=request.POST['pin']
     user_post=request.POST['post']
+
+    log=login()
+    log.username=user_email
+    log.password=user_pass
+    log.type="user"
+    log.save()
+
+    use_r=user()
+    use_r.firstname=user_name
+    use_r.lastname=user_last
+    use_r.email=user_email
+    use_r.phone=user_no
+    use_r.ugender=user_gender
+    use_r.dob=user_dob
+    use_r.uimage=user_profile
+    use_r.uplace=user_place
+    use_r.upin=user_pincode
+    use_r.upost=user_post
+    use_r.LOGIN=log
+    use_r.save()    
+
     return render(request,"user/user-regesister.html")
 
 
+def bookingSchedule(request):
 
-
+     return render(request,"booking/booking.html")
 
 
 

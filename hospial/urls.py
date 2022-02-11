@@ -40,7 +40,7 @@ urlpatterns = (
     path("admin_leave_req/", views.admin_leave_req),
     path("admin_view_attends/", views.admin_view_attends),
     path("admin_view_doctor/", views.admin_view_doctor),
-    path("admin_view_shedule/", views.admin_view_shedule),
+    path("admin_view_shedule/<docid>", views.admin_view_shedule),
     path("admin_view_staff/", views.admin_view_staff),
     path("admin_view_attends/", views.admin_view_attends),
     path("admin_home/", views.admin_Home),
@@ -53,5 +53,7 @@ urlpatterns = (
     path("admin_view_staff_serach/", views.admin_view__staff_serach),
     path("admin_schedule_search/", views.admin_schedule_search),
     path("adminviewdoctorschedule/<id>", views.adminviewdoctorschedule),
-
+    path("admin_add_user_load/", views.admin_add_user_load),
+    path("admin_user_load_post/", views.admin_user_load_post),
+    path("bookingSchedule/",views.bookingSchedule)
 )
