@@ -1,8 +1,9 @@
-<body>
+{% extends 'admin/admintemp.html' %}
+{% block body%}
     <form method="post" action="/hospial/admin_add_shedule_load_post/" >
-        <table cellspacing="2"  cellpadding="5" border="0">
+        <table class="table table-hover">
     <tr>
-    <td>Doctor name:<input type="hidden" value={{data.id}} name='sch'></td>
+    <td>Doctor name:<input class="form-control" type="hidden" value={{data.id}} name='sch' readonly></td>
       <td><select name="select">
         <option value="{{ data.DOCID.id }}">{{ data.DOCID.doctorname }}</option>
 
@@ -14,20 +15,20 @@
     <br>
     <tr>
     <td>  <label for="Day">Day :</label></td>
-    <td>  <input type="text" name="date" value={{data.day}}></td>
+    <td>  <input class="form-control" type="text" name="date" value={{data.day}}></td>
     </tr>
     <tr>
         <td>  <label for="from">from:</label></td>
-        <td>  <input type="text" name="from" value={{data.fromtime}}></td>
+        <td>  <input class="form-control" type="text" name="from" value={{data.fromtime}}></td>
         </tr>
         <tr>
             <td>  <label for="To">To :</label></td>
-            <td>  <input type="text" name="to" value={{data.totime}}></td>
+            <td>  <input class="form-control" type="text" name="to" value={{data.totime}}></td>
             </tr>
             
     <tr>
-    <td><input type="submit" value="ADD"><td>
+    <td><input class="btn btn-primary" type="submit" value="ADD"><td>
     </tr>
         </table>
     </form>
-    </body>
+    {%endblock%}

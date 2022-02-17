@@ -1,6 +1,7 @@
-<body>
+{% extends 'admin/admintemp.html' %}
+{% block body%}
 <form method="post" action="/hospial/admin_schedule_search/">
-<table border="1" >
+<table class=" table table-hover">
   <tr>
 <td colspan="9">Date from<input type="date" value="" name="d1" placeholder="Search by schedule ">To<input type="date" value="" name="d2" placeholder="Search by schedule "><input type="submit" name="btn" value="search"></td>
   </tr>
@@ -29,4 +30,4 @@
     {% endfor %}
 </table>
 </form>
-</body>
+{%endblock%}

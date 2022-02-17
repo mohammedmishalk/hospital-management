@@ -1,9 +1,10 @@
-<body>
+{% extends 'admin/admintemp.html' %}
+{% block body%}
     <label>From</label>
-    <input type="date">
+    <input class="form-control" type="date">
     <label>To</label>
-    <input type="date"><button>Go</button>
-       <table border="1" >
+    <input class="form-control"  type="date"><button>Go</button>
+       <table class="table table-hover" >
            <tr>
        <th>No</th>
        <th>date</th>
@@ -20,4 +21,4 @@
            <td></td>
            
        </tr>
-       </body>
+       {%endblock%}

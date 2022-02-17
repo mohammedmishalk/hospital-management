@@ -1,0 +1,30 @@
+{% extends 'user/usertemp.html' %}
+{% block body%}
+<form method="post" action="/hospial/user_schedule_search/">
+<table class="table table-hover">
+  <tr>
+<td colspan="9">Date from<input type="date" value="" name="d1" placeholder="Search by schedule ">To<input type="date" value="" name="d2" placeholder="Search by schedule "><input type="submit" name="btn" value="search"></td>
+  </tr>
+    <tr>
+<th>No</th>
+<th>Added on</th>
+<th>Doctor name</th>
+<th>day</th>
+<th>from</th>
+<th>To</th>
+</tr>
+    {% for i in data %}
+<tr>
+    <td>{{ i.id }}</td>
+    <td>{{ i.added_date }}</td>
+    <td>{{ i.DOCID.doctorname }}</td>
+    <td>{{ i.day }}</td>
+    <td>{{ i.fromtime }}</td>
+    <td>{{ i.totime }}</td>
+    <td><a href="/hospial/bookings/{{i.id}}"> booking</a></td>
+
+</tr>
+    {% endfor %}
+</table>
+</form>
+{%endblock%}

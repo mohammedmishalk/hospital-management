@@ -1,16 +1,18 @@
-<body>
+{% extends 'admin/admintemp.html' %}
+{% block body%}
 <h2><u>Doctor details</u></h2>
 <form method="post" action="/hospial/admin_view_doc_serach/">
-    <table border="1" >
+    <div class="table-responsive">
+    <table class="table table-hover table table-sm table table-striped" >
     <tr>
-    <td><input type="text" value="" name="n2" placeholder="Searc by doctor name"><input type="submit" name="btn" value="search"></td>
-        <td>choose dept<select name="select">
+    <td><input  type="text" value="" name="n2" placeholder="Searc by doctor name"><input class="btn btn-secondary" type="submit" name="btn" value="search"></td>
+        <td>choose dept<select  name="select">
              {% for i in dept %}
               <option value="{{ i.id }}">{{ i.deptname }}</option>
             {% endfor %}
 
         </select>
-        <input type="submit" name="btn" value="go">
+        <input  class="btn btn-secondary" type="submit" name="btn" value="go">
         </td>
 </tr>
         <tr>
@@ -37,5 +39,6 @@
     </tr>
         {% endfor %}
     </table>
+</div>
 </form>
-    </body>
+    {%endblock%}

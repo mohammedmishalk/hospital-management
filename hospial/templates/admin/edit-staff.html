@@ -1,22 +1,23 @@
-<body>
+{% extends 'admin/admintemp.html' %}
+{% block body%}
     <form method="post" action="/hospial/admin_update_staff/"  enctype="multipart/form-data">
 <h2>Edit Staff detailes</h2>
-<table cellspacing="2"  cellpadding="5" border="0">
+<table class="table table-hover">
 <tr>
 <td >Name :<input type="hidden" value={{data.id}} name='sid'></td>
-<td><input type="text" placeholder="Enter Doctor Name" class="tb" name="staffname" value={{data.sname}}></td>
+<td><input class="form-control" type="text" placeholder="Enter Doctor Name" class="tb" name="staffname" value={{data.sname}}></td>
 </tr>
 <tr>
 <td >Place :</td>
-<td><input type="text" placeholder="place" class="tb" name="place" value={{data.splace}}></td>
+<td><input class="form-control" type="text" placeholder="place" class="tb" name="place" value={{data.splace}}></td>
 </tr>
 <tr>
 <td>Pin code:</td>
-<td><input type="number" placeholder="Pin code" class="tb" name="pin" value={{data.spin}}></td>
+<td><input class="form-control" type="number" placeholder="Pin code" class="tb" name="pin" value={{data.spin}}></td>
 </tr>
 <tr>
     <td>Post:</td>
-    <td><input type="text" placeholder="Post" class="tb" name="post" value={{data.spost}} ></td>
+    <td><input class="form-control" type="text" placeholder="Post" class="tb" name="post" value={{data.spost}} ></td>
     </tr>
 <tr>
     <tr>
@@ -61,28 +62,28 @@
 </tr>
 <tr>
 <td >year of expreies :</td>
-<td><input type="number" name="exp" value={{data.xperience}}></td>
+<td><input  class="form-control" type="number" name="exp" value={{data.xperience}}></td>
 </tr>
 <td >Email :</td>
-<td><input type="email" name="email"  value={{data.email}} required></td>
+<td><input class="form-control" type="email" name="email"  value={{data.email}} required></td>
 </tr>
     <tr>
         <td > Phone no :</td>
-        <td><input type="number"  name="no"  value={{data.phone}}></td>
+        <td><input class="form-control" type="number"  name="no"  value={{data.phone}}></td>
         </tr>
         <td >Image:</td>
-        <td><input type="file" name="image" value={{data.dimage}}></td>
+        <td><input class="form-control-file" type="file" name="image" value={{data.dimage}}></td>
         </tr>
 
 <tr>
 <td></td>
 <td>
-<input type="reset"/>
-<input type="submit" value="ADD"></td>
+<input class="btn btn-dark" type="reset"/>
+<input class="btn btn-primary" type="submit" value="ADD"></td>
 </tr>
 
 </table>
 </form>
 
-</body>
+{%endblock%}
 

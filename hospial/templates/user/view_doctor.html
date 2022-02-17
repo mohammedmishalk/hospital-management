@@ -1,0 +1,41 @@
+      
+   {% extends 'user/usertemp.html' %}
+   {% block body%}  
+      <h2><u>Doctor details</u></h2>
+        <form method="post" action="/hospial/user_view_doc_serach/">
+            <table  class="table table-hover" >
+            <tr>
+            <td><input type="text" value="" name="n2" placeholder="Searc by doctor name"><input type="submit" name="btn" value="search"></td>
+                <td>choose dept<select name="select">
+                     {% for i in dept %}
+                      <option value="{{ i.id }}">{{ i.deptname }}</option>
+                    {% endfor %}
+        
+                </select>
+                <input type="submit" name="btn" value="go">
+                </td>
+        </tr>
+                <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Address</th>
+            <th>Department</th>
+            <th>expreies</th>
+            <th>Contact</th>
+            </tr>
+                {% for i in data %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.doctorname }}</td>
+                <td></td>
+                <td>{{ i.dplace }}<br>{{ i.dpin }}<br>{{ i.dpost }}</td>
+                <td>{{ i.DEPID.deptname }}</td>
+                <td>{{ i.experience }}</td>
+                <td>{{ i.phone }}</td>
+                <td><a href="/hospial/user_view_shedule/{{i.id}}"> View Schedule</a></td>
+                {% endfor %}
+            </table>
+        </form>
+
+    {%endblock%}

@@ -1,0 +1,22 @@
+
+{% extends 'employes/employtemp.html' %}
+{% block body%}
+<form method="post" action="/hospial/staff_req_post/" >
+    <table class="table table-hover">
+<br>
+<h3><strong>Leave request form</strong></h3>
+<tr>
+<td class="table-active"> <label for="from">Date:</label></td>
+<td class="table-active"><input class="form-control" type="date" id="birthday" name="from" randomly></td>
+</tr>
+<tr>
+    <td class="table-secondary">Reason</td>
+    <td class="table-secondary"><textarea class="form-control" name="message" rows="10" cols="30"></textarea></td>
+</tr>
+    
+<tr>
+<td><input class="btn btn-primary ml-3" type="submit" value="Request"><td>
+</tr>
+    </table>
+</form>
+{%endblock%}

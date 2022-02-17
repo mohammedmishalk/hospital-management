@@ -1,31 +1,32 @@
-<body>
+{% extends 'admin/admintemp.html' %}
+{% block body%}
         <form method="post" action="/hospial/admin_add_doctor_load_post/"  enctype="multipart/form-data">
 
 	<h2>Add Doctor detailes</h2>
-	<table cellspacing="2"  cellpadding="5" border="0">
+	<table  class="table table-hover">
 	<tr>
 	<td >Name :</td>
-	<td><input type="text" placeholder="Enter Doctor Name" class="tb" name="name" /></td>
+	<td><input class="form-control" type="text" placeholder="Enter Doctor Name" class="tb" name="name" readonly /></td>
 	</tr>
 	<tr>
 	<td >Place :</td>
-	<td><input type="text" placeholder="place" class="tb" name="place" /></td>
+	<td><input  class="form-control" type="text" placeholder="place" class="tb" name="place" readonly /></td>
 	</tr>
 	<tr>
 	<td>Pin code:</td>
-	<td><input type="number" placeholder="Pin code" class="tb" name="pin"/></td>
+	<td><input class="form-control" type="number" placeholder="Pin code" class="tb" name="pin" maxlength="6" readonly requird/></td>
 	</tr>
     <tr>
         <td>Post:</td>
-        <td><input type="text" placeholder="Post" class="tb" name="post"/></td>
+        <td><input class="form-control" type="text" placeholder="Post" class="tb" name="post" readonly/></td>
         </tr>
 	<tr>
         <tr>
             <tr>
         <td>Department</td>
-        <td><select name="select">
+        <td><select  class="form-control" name="select">
             {% for i in data %}
-                <option value="{{ i.id }}">{{ i.deptname }}</option>
+                <option class="btn btn-secondary dropdown-toggle" value="{{ i.id }}">{{ i.deptname }}</option>
             {% endfor %}
           </select></td>
         </tr>
@@ -39,30 +40,30 @@
     </td>
 	<tr>
 	<td >year of expreies :</td>
-	<td><input type="number" name="exp"/></td>
+	<td><input class="form-control" type="number" name="exp" readonly/></td>
 	</tr>
     <td >Emial :</td>
-   <td><input type="email" name="email" required></td>
+   <td><input  class="form-control" type="email" name="email" readonly required></td>
 	</tr>
     <tr>
         <td >licenes:</td>
-        <td><input type="file" name="file" /></td>
+        <td><input class="form-control-file" type="file" name="file" /></td>
         </tr>
         <tr>
             <td > Phone no :</td>
-            <td><input type="number" name="no" /></td>
+            <td><input class="form-control" type="number" name="no" pattern="[6789]{1}[0-9]{9}" placeholder="[6789]{1}[0-9]{9}" maxlength="10" readonly required/></td>
             </tr>
             <td >Image:</td>
-            <td><input type="file" name="image"/></td>
+            <td><input class="form-control-file" type="file" name="image"/></td>
             </tr>
 
 	<tr>
 	<td></td>
 	<td>
-	<input type="reset"/>
-	<input type="submit" value="ADD"></td>
+	<input class="btn btn-dark" type="reset"/>
+	<input class="btn btn-primary" type="submit" value="ADD"></td>
 	</tr>
     </table>
 </form>
-	</body>
+{%endblock%}
 

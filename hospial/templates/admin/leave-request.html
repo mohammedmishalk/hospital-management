@@ -1,6 +1,7 @@
-<body>
-    <input type="text" placeholder="Doctor nmae"><button>Search</button>
-    <table border="1" >
+{% extends 'admin/admintemp.html' %}
+{% block body%}
+    <input class="btn btn-secondary" type="text" placeholder="Doctor nmae"><button>Search</button>
+    <table class=" table table-hover" >
         <tr>
     <th>No</th>
     <th>date</th>
@@ -22,4 +23,4 @@
     
     
     </tr>
-    </body>
+{%endblock%}

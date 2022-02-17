@@ -53,7 +53,7 @@ class schedule(models.Model) :
 class leavereq(models.Model):
     STAFFID = models.ForeignKey(staff, on_delete=models.CASCADE, default=1)
     leave_need_date= models.CharField(max_length=50)
-    request_date = models.CharField(max_length=50)
+    # request_date = models.CharField(max_length=50)
     des = models.CharField(max_length=50)
 
 
@@ -62,14 +62,6 @@ class attendance(models.Model):
     checkin_time = models.CharField(max_length=50)
     checkout_time = models.CharField(max_length=50)
     date= models.CharField(max_length=50)
-
-
-class booking(models.Model):
-    SCHDID = models.ForeignKey(schedule, on_delete=models.CASCADE, default=1)
-    date = models.CharField(max_length=50)
-    time = models.CharField(max_length=50)
-    token= models.CharField(max_length=50)
-    status= models.CharField(max_length=50)
 
 
 class user(models.Model):
@@ -84,3 +76,15 @@ class user(models.Model):
     upost = models.CharField(max_length=50)
     upin= models.CharField(max_length=50)
     LOGIN=models.ForeignKey(login,on_delete=models.CASCADE,default=1)
+
+
+class booking(models.Model):
+    USER=models.ForeignKey(user, on_delete=models.CASCADE, default=1) 
+    SCHDID = models.ForeignKey(schedule, on_delete=models.CASCADE, default=1)
+    date = models.CharField(max_length=50)
+    time = models.CharField(max_length=50)
+    token= models.IntegerField(default=1)
+    status= models.CharField(max_length=50)
+
+
+  

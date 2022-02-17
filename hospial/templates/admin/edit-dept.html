@@ -1,9 +1,11 @@
+{% extends 'admin/admintemp.html' %}
+{% block body%}
 <form method="post" action="/hospial/admin_update_dept/" >
     {% csrf_token %}
-    <table border="0">
+    <table class="table table-hover">
         <tr>
             <td>Department Name:<input type="hidden" value={{data.id}} name='depid'></td>
-    <td><input type="text" id="username" name="username" value={{data.deptname}}></td>
+    <td><input class="form-control" type="text" id="username" name="username" readonly value={{data.deptname}}></td>
    </tr>
 
     <tr>
@@ -15,3 +17,4 @@
 </tr>
     </table>
     </form>
+    {%endblock%}

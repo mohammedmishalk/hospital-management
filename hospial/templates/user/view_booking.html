@@ -1,0 +1,26 @@
+{% extends 'user/usertemp.html' %}
+{% block body%}
+    <form>
+    <table class="table table-hover" >
+        <tr>
+    <th>no</th>        
+    <th>date</th>
+    <th>time</th>
+    <th>token</th>
+    <th>status</th>
+</tr>
+    {% for i in data %}
+    <tr>
+        <td>{{i.id}}</td>
+        <td>{{ i.date}}</td>
+        <td>{{ i.time}}</td>
+        <td>{{ i.token }}</td>
+        <td>{{ i.status }}</td>
+        <td><a href="#">cancel</a></td>
+    </tr>
+        {% endfor %}
+
+    </table>
+    </form>
+    {%endblock%}
+    

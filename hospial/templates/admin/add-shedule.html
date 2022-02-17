@@ -1,6 +1,7 @@
-<body>
+{% extends 'admin/admintemp.html' %}
+{% block body%}
 <form method="post" action="/hospial/admin_add_shedule_load_post/" >
-    <table cellspacing="2"  cellpadding="5" border="0">
+    <table class="table table-hover">
 <tr>
 <td>Doctor name:</td>
   <td><select name="select">
@@ -12,20 +13,20 @@
 <br>
 <tr>
 <td>  <label for="Day">Day :</label></td>
-<td>  <input type="date" name="date"></td>
+<td>  <input  class="form-control" type="date" name="date" readonly></td>
 </tr>
 <tr>
     <td>  <label for="from">from:</label></td>
-    <td>  <input type="time" name="from"></td>
+    <td>  <input class="form-control" type="time" name="from" readonly></td>
     </tr>
     <tr>
         <td>  <label for="To">To :</label></td>
-        <td>  <input type="time" name="to"></td>
+        <td>  <input class="form-control" type="time" name="to" readonly></td>
         </tr>
         
 <tr>
-<td><input type="submit" value="ADD"><td>
+<td><input class="btn btn-primary ml-3" type="submit" value="ADD"><td>
 </tr>
     </table>
 </form>
-</body>
+{%endblock%}

@@ -1,6 +1,7 @@
-<body>
+{% extends 'admin/admintemp.html' %}
+{% block body%}
 <form method="post" action="/hospial/admin_view_serach/">
-<table border="1" >
+<table class="table table-hover" >
 <tr>
     <td><input type="text" value="" name="n1"><input type="submit" value="search"></td>
 </tr>
@@ -23,4 +24,4 @@
     {% endfor %}
 </table>
 </form>
-</body>
+{%endblock%}

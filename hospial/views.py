@@ -1,3 +1,4 @@
+from datetime import datetime
 import datetime
 import random
 
@@ -23,31 +24,58 @@ from hospial.models import *
 
 def login_load(request):
 
-    return render(request,"login.html")
+    return render(request,"index.html")
 
 
 def login_load_post(request):
 
+
     user_name = request.POST['username']
+    ps_word = request.POST['password']        
+    
+    if login.objects.filter(username=user_name,password=ps_word).exists():
+        login_obj=login.objects.get(username=user_name,password=ps_word)
 
-    ps_word = request.POST['password']
+        request.session["lid"]=str(login_obj.id)
 
-    login_obj=login.objects.filter(username=user_name,password=ps_word)
 
-    if login_obj.exists():
+      
+        print("true")
         if login_obj.type=="user":
-            return("user")
-    elif login_obj.type=="staff":
-            return("staff")
-    elif login_obj.type=="doctor":
-        return("doctor")
+            da=user.objects.get(LOGIN=login_obj.id)
+            request.session["id"]=da.id
+            return user_home(request)
+        elif login_obj.type=="staff":
+            da=staff.objects.get(LOGIN=login_obj.id)
+            request.session["id"]=da.id
+            return staff_home(request)
+        elif login_obj.type=="doctor":
+            da=doctor.objects.get(LOGIN=login_obj.id)
+            request.session["id"]=da.id
+            return doctor_home(request)
+        elif login_obj.type=="admin":
+            return admin_Home(request)
+        else:
+            return HttpResponse("erro 304")
     else:
-        return("admin")   
-
+        return HttpResponse("no")
+        
+def admin_temp(request):
+    return render(request,"admin/admintemp.html")
 
 def  admin_Home(request):
-
     return render(request,"admin/admin_home.html")
+
+def doctor_home(request):
+    return render(request,"doctor/doctortemp.html")
+
+def staff_home(request):
+    return render(request,"employes/employtemp.html")
+
+def user_home(request):
+    return render(request,"user/usertemp.html")    
+
+
 
 
 
@@ -83,7 +111,7 @@ def admin_add_staff_load_post(request):
     password=random.randint(1000,9999)
 
 
-
+    dept_obj=dept.objects.all()
 
     login_obj=login()
 
@@ -126,7 +154,7 @@ def admin_add_staff_load_post(request):
     staff_obj.save()
     
 
-    return render(request, "admin/add_staff.html")
+    return render(request, "admin/add_staff.html", {'data':dept_obj})
 
 
 
@@ -163,7 +191,7 @@ def admin_add_shedule_load_post(request):
 
     shedule_obj.save()
 
-    return render(request, "admin/add-shedule.html")
+    return admin_add_shedule_load(request)
 
 
 
@@ -227,6 +255,7 @@ def admin_add_doctor_load_post(request):
     doctor_obj.dgender=doc_gender
 
     doctor_obj.DEPID_id=doc_department
+    doctor_obj.LOGIN_id=login_obj.id
 
     doctor_obj.licence=doc_lisence
 
@@ -239,7 +268,7 @@ def admin_add_doctor_load_post(request):
     doctor_obj.save()
     
 
-    return render(request, "admin/adddoctor.html")
+    return admin_add_doctor_load(request)
 
 
 
@@ -280,7 +309,7 @@ def admin_view_serach(request):
 
     res=dept.objects.filter(deptname__startswith=depname)
 
-    return render(request, "admin/Adminviewdept.html", {'data': res})
+    return render(request,"admin/Adminviewdept.html", {'data': res})
 
 
 def admin_delect_dept(request,deptid):
@@ -487,9 +516,9 @@ def admin_delect_doctor(request,docid):
 
 
 
-def admin_view_shedule(request,docid):
+def admin_view_shedule(request):
 
-    schedu=schedule.objects.filter(id=docid)
+    schedu=schedule.objects.filter()
 
     return render(request,"admin/view-schedule.html",{'data':schedu})
                    
@@ -557,8 +586,9 @@ def admin_delect_staff(request,staffid ):
 
 
 def today_booking(request):
-
-    return render(request,"today_booking.html")
+    id=request.session['id']
+    book=booking.objects.filter(SCHDID__DOCID__id=id)
+    return render(request,"doctor/today_booking.html",{'data':book})
 
 
 
@@ -655,11 +685,124 @@ def bookingSchedule(request):
 
      return render(request,"booking/booking.html")
 
+def user_view_doctor(request):
+
+    alldoc=doctor.objects.all()
+
+
+    dep=dept.objects.all()
+
+    return render(request,"user/view_doctor.html",{'data':alldoc,'dept':dep})
 
 
 
+def user_view__doc_serach(request):
+
+    btn=request.POST["btn"]
+
+    dep = dept.objects.all()
+
+    if btn=="search":
+
+        docname=request.POST["n2"]
+
+        res=doctor.objects.filter(doctorname__startswith=docname)
+
+        return render(request, "user/view_doctor.html", {'data': res,'dept':dep})
+
+    elif btn=="go":
+
+        depts=request.POST["select"]
+
+        res = doctor.objects.filter(DEPID_id=depts)
+
+        return render(request, "user/view_doctor.html", {'data': res,'dept':dep})
 
 
 
+def user_view_shedule(request,docid):
+
+    schedu=schedule.objects.filter(id=docid)
+
+    return render(request,"user/user_view_sche.html",{'data':schedu})
+  
 
 
+def user_schedule_search(request):
+
+   f_rom= request.POST["d1"]
+
+   to=request.POST["d2"]
+
+   allschedule=schedule.objects.filter(day__range=(f_rom,to))
+
+   return render(request, "user/user_view_sche.html", {'data': allschedule})
+
+
+def bookings(request,sch):
+     shedul=schedule.objects.get(id=sch)
+     dat_e=datetime.datetime.now()
+
+     c=booking.objects.filter(SCHDID=shedul)
+
+     if c.exists():
+        
+        token = c[len(c)-1].token+1
+     else:
+        token=1 
+
+
+     booking_obj=booking()
+     booking_obj.SCHDID=shedul
+     booking_obj.USER_id=request.session['id']
+     booking_obj.date=dat_e
+     booking_obj.time=dat_e.time()
+     booking_obj.token=token
+     booking_obj.status="pending"
+     booking_obj.save()
+     return user_view_doctor((request))
+
+def user_view_booking(request):
+
+    a=booking.objects.filter(USER__LOGIN_id=request.session['lid'])
+    return render(request,"user/view_booking.html",{'data':a})
+
+def staff_req(request):
+    return render(request,"employes/leave_req.html")
+
+def staff_req_post(request):
+    
+    req_from = request.POST['from']
+
+    req_msg = request.POST['message']
+
+    req_obj=leavereq()
+
+    req_obj.leave_need_date=req_from
+
+    req_obj.des=req_msg
+    req_obj.STAFFID=staff.objects.get(LOGIN_id=request.session["lid"])
+    
+    req_obj.save()
+
+
+
+    return render(request,"employes/leave_req.html")  
+
+    
+def staff_request_view(request):
+    b=leavereq.objects.filter(STAFFID__LOGIN_id=request.session['lid'])
+    return render(request,"employes/leave_status.html",{'data':b})
+  
+def staff_view__req_serach(request):
+
+    laave_f=request.POST["n1"]
+
+    res=leavereq.objects.filter(leave_need_date__startswith=laave_f)
+
+    return render(request,"employes/leave_status.html",{'data': res})
+
+def staff_view_profile(request):
+    b=staff.objects.filter(LOGIN_id=request.session['lid'])
+    return render(request,"employes/view_profile.html",{'data':b})
+    

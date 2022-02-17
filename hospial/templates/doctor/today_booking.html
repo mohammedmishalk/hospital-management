@@ -1,25 +1,28 @@
-<body>
-    <input type="text"  placeholder="Name" ><button>Search</button>
-       <table border="1" >
+{% extends 'doctor/doctortemp.html' %}
+{% block body%}
+    <input type="text"  placeholder="Name" ><button class="btn btn-primary mb-2">Search</button>
+       <table class="table table-hover table table-striped">
            <tr>
-
        <th>No</th>
        <th>Name</th>
        <th>Image</th>
        <th>Address</th>
-
-       <th>Emial</th>
+       <th>Email</th>
        <th>Contact</th>
+       <th>schedule info</th>
        </tr>
+       {% for i in data %}
        <tr>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
+           <td>{{ i.id }}</td>
+           <td>{{ i.USER.firstname}} {{i.USER.lastname}}</td>
+           <td>{{ i.USER.uimage}}</td>
+           <td>{{ i.USER.uplace }}<br>{{ i.USER.upin }}<br>{{ i.USER.upost }}</td>
+        <td>{{ i.USER.email}}</td>
+           <td>{{ i.USER.phone}}</td>
+           <td>{{i.SCHDID.day }}<br>{{i.SCHDID.fromtime}}<br>{{i.SCHDID.totime}}</td>
         
-           <td></td>
-           <td></td>
-        
-       
+           
        </tr>
-       </body>
+       {% endfor %}
+    </table>
+       {%endblock%}
