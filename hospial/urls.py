@@ -72,5 +72,15 @@ urlpatterns = (
     path("staff_req_post/",views.staff_req_post),
     path("staff_request_view/",views.staff_request_view),
     path("staff_view__req_serach/",views.staff_view__req_serach),
-    path("staff_view_profile/",views.staff_view_profile)
+    path("staff_view_profile/",views.staff_view_profile),
+    path("staff_cancel_bk/<leaveid>",views.staff_cancel_bk),
+    path("user_view_profile/",views.user_view_profile),
+    path("doctor_view_profile/",views.doctor_view_profile),
+    path("doc_req/",views.doc_req),
+    path("doc_req_post/",views.doc_req_post),
+    path("doc_request_view/",views.doc_request_view),
+    path("doc_view__req_serach/",views.doc_view__req_serach),
+    path("doc_cancel_bk/<leaveid>",views.doc_cancel_bk),
+    path("admin_lev_view_doc/",views.admin_lev_view_doc),
+    path("admin_stafflv_view/",views.admin_stafflv_view)
 )

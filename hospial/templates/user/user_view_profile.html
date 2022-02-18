@@ -1,0 +1,51 @@
+{% extends 'user/usertemp.html' %}
+{% block body%}
+
+<h2>Profile</h2>
+<div class="text-center">
+<img class="rounded" src="{{i.uimage}}" width="200px" height="200px" alt="profile">
+</div>
+<br>
+<br>
+<table class=" table table-hover">
+   
+    <tr>
+<td class="table-secondary"><b>Name :</b>   {{i.firstname}}  {{i.lastname}}</td>
+
+</tr>
+<tr>
+<td class="table-secondary"><b>Place :</b>  {{i.uplace}}</td>
+
+</tr>
+<tr>
+<td class="table-secondary"><b>Pin code:</b>  {{i.upin}}</td>
+
+</tr>
+<tr>
+    <td class="table-secondary"><b>Post:</b>  {{i.upost}}</td>
+ 
+    </tr>
+
+    <tr>
+        <td class="table-secondary"><b>Gender:</b>    {{i.ugender}}</td>
+      
+        </tr>
+        
+    <tr>
+        <td class="table-secondary"><b>DOB:</b>    {{i.dob}}</td>
+      
+        </tr>
+</tr>
+
+<td class="table-secondary"><b>Email :</b>  {{i.email}}</td>
+
+</tr>
+
+    <tr>
+        <td class="table-secondary"><b> Phone no :</b>  {{i.phone}}</td>
+      
+        </tr>
+        
+</table>
+{%endblock%}
+

@@ -96,7 +96,7 @@
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="/static/main_temp/images/faces/face28.jpg" alt="profile"/>
+              <img src="{{i.uimage}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -236,7 +236,7 @@
             </div>
             <ul class="chat-list">
               <li class="list active">
-                <div class="profile"><img src="/static/main_temp/images/faces/face1.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="{{i.uimage}}" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Thomas Douglas</p>
                   <p>Available</p>
@@ -367,26 +367,18 @@
             </div>
           </li>  {% endcomment %}
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="/hospial/login_load/" aria-expanded="false" aria-controls="auth">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
               <i class="icon-head menu-icon"></i>
-              <span class="menu-title">Log out</span>
+              <span class="menu-title">User Page</span>
               <i class="menu-arrow"></i>
             </a>
-            
-          </li>
-          {% comment %} <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
-              <i class="icon-ban menu-icon"></i>
-              <span class="menu-title">Error pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="error">
+            <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/hospial/user_view_profile/"> View profile </a></li>
+                {% comment %} <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html">  </a></li> {% endcomment %}
               </ul>
             </div>
-          </li> {% endcomment %}
+          </li>
           {% comment %} <li class="nav-item">
             <a class="nav-link" href="pages/documentation/documentation.html">
               <i class="icon-paper menu-icon"></i>
@@ -404,7 +396,7 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title">Order Details</p>
+                  <p class="card-title">Welcome <b> {{i.firstname}}!<b></p>
                   <p class="font-weight-500">{% block body %}
                       {%endblock%}
                   </p>
@@ -414,6 +406,53 @@
             </div>
           
           </div>
+
+          <div class="main-panel">
+            <div class="content-wrapper">
+              <div class="row">
+                <div class="col-md-12 grid-margin">
+                  <div class="row">
+                    <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                      <h3 class="font-weight-bold"> </h3>
+                      <h6 class="font-weight-normal mb-0"></h6>
+                    </div>
+                    <div class="col-12 col-xl-4">
+                     <div class="justify-content-end d-flex">
+                      <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                        <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                         {% comment %} <i class="mdi mdi-calendar"></i>  {% endcomment %}
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                          <a class="dropdown-item" href="#">January - March</a>
+                          <a class="dropdown-item" href="#">March - June</a>
+                          <a class="dropdown-item" href="#">June - August</a>
+                          <a class="dropdown-item" href="#">August - November</a>
+                        </div>
+                      </div>
+                     </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 grid-margin stretch-card">
+                  <div class="card tale-bg">
+                    <div class="card-people mt-auto">
+                      <img src="/static/main_temp/images/dashboard/people.svg" alt="people">
+                      <div class="weather-info">
+                        <div class="d-flex">
+                          <div>
+                            <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
+                          </div>
+                          <div class="ml-2">
+                            <h4 class="location font-weight-normal">Bangalore</h4>
+                            <h6 class="font-weight-normal">India</h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
  
          
           {% comment %} <div class="row">

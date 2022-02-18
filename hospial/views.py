@@ -2,6 +2,7 @@ from datetime import datetime
 import datetime
 import random
 
+from django.core.files.storage import FileSystemStorage
 
 from django.http import HttpResponse
 
@@ -64,16 +65,20 @@ def admin_temp(request):
     return render(request,"admin/admintemp.html")
 
 def  admin_Home(request):
+    
     return render(request,"admin/admin_home.html")
 
 def doctor_home(request):
-    return render(request,"doctor/doctortemp.html")
+    b=doctor.objects.get(LOGIN_id=request.session['lid'])
+    return render(request,"doctor/doctortemp.html",{'i':b})
 
 def staff_home(request):
-    return render(request,"employes/employtemp.html")
+    b=staff.objects.get(LOGIN_id=request.session['lid'])
+    return render(request,"employes/employtemp.html",{'i':b})
 
 def user_home(request):
-    return render(request,"user/usertemp.html")    
+    b=user.objects.get(LOGIN_id=request.session['lid'])
+    return render(request,"user/usertemp.html",{'i':b})    
 
 
 
@@ -107,6 +112,13 @@ def admin_add_staff_load_post(request):
     staff_number = request.POST['no']
 
     staff_image = request.FILES['image']
+    fs=FileSystemStorage()
+    nam = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
+    filename=nam+".jpg"
+    print(filename)
+    fs.save(filename,staff_image)
+
+    url='/media/'+nam+".jpg"
 
     password=random.randint(1000,9999)
 
@@ -147,7 +159,7 @@ def admin_add_staff_load_post(request):
 
     staff_obj.email=staff_email
 
-    staff_obj.simage=staff_image
+    staff_obj.simage=url
 
     staff_obj.LOGIN=login_obj
 
@@ -226,6 +238,14 @@ def admin_add_doctor_load_post(request):
 
     doc_image = request.FILES['image']
 
+    fs=FileSystemStorage()
+    nam = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
+    filename=nam+".jpg"
+    print(filename)
+    fs.save(filename,doc_image)
+
+    url='/media/'+nam+".jpg"
+
     password = random.randint(1000, 9999)
 
 
@@ -244,7 +264,7 @@ def admin_add_doctor_load_post(request):
 
     doctor_obj.doctorname=doc_name
 
-    doctor_obj.dimage=doc_image
+    doctor_obj.dimage=url
 
     doctor_obj.dplace=doc_place
 
@@ -653,7 +673,16 @@ def admin_user_load_post(request):
     user_email=request.POST['mail']
     user_gender=request.POST['g']
     user_dob=request.POST['dob']
-    user_profile=request.POST['dp']
+    user_profile=request.FILES['dp']
+
+    fs=FileSystemStorage()
+    nam = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
+    filename=nam+".jpg"
+    print(filename)
+    fs.save(filename,user_profile)
+
+    url='/media/'+nam+".jpg"
+
     user_place=request.POST['place']
     user_pincode=request.POST['pin']
     user_post=request.POST['post']
@@ -671,7 +700,7 @@ def admin_user_load_post(request):
     use_r.phone=user_no
     use_r.ugender=user_gender
     use_r.dob=user_dob
-    use_r.uimage=user_profile
+    use_r.uimage=url
     use_r.uplace=user_place
     use_r.upin=user_pincode
     use_r.upost=user_post
@@ -773,15 +802,20 @@ def staff_req(request):
 def staff_req_post(request):
     
     req_from = request.POST['from']
+    req_to=request.POST['to']
+    
 
     req_msg = request.POST['message']
 
     req_obj=leavereq()
 
     req_obj.leave_need_date=req_from
-
+    req_obj.to=req_to
     req_obj.des=req_msg
+    req_obj.request_date=datetime.datetime.now().date()
     req_obj.STAFFID=staff.objects.get(LOGIN_id=request.session["lid"])
+   
+    req_obj.type='staff'
     
     req_obj.save()
 
@@ -803,6 +837,75 @@ def staff_view__req_serach(request):
     return render(request,"employes/leave_status.html",{'data': res})
 
 def staff_view_profile(request):
-    b=staff.objects.filter(LOGIN_id=request.session['lid'])
-    return render(request,"employes/view_profile.html",{'data':b})
+    b=staff.objects.get(LOGIN_id=request.session['lid'])
+    return render(request,"employes/view_profile.html",{'i':b})
+
+def staff_cancel_bk(request,leaveid):
+     leavereq.objects.filter(id=leaveid).delete()
+
+     return HttpResponse("<script>alert('success');window.location='/hospial/staff_request_view/'</script>")
+ 
+def user_view_profile(request):
+    b=user.objects.get(LOGIN_id=request.session['lid'])
+    return render(request,"user/user_view_profile.html",{'i':b})
+
+def doctor_view_profile(request):
+     b=doctor.objects.get(LOGIN_id=request.session['lid'])
+     return render(request,"doctor/view_profile.html",{'i':b})
+
+
+def doc_req(request):
+    return render(request,"doctor/doc_leavereq.html")
+
+
+
+def doc_req_post(request):
     
+    req_from = request.POST['from']
+
+    req_to = request.POST['to']
+
+    req_msg = request.POST['message']
+    import datetime
+    req_obj=doctorleav()
+    req_obj.fro_m=req_from
+    req_obj.to=req_to
+    req_obj.des=req_msg
+    req_obj.reqdate=datetime.datetime.now().date()
+    req_obj.DOCID=doctor.objects.get(LOGIN_id=request.session["lid"])    
+    req_obj.save()
+
+
+
+    return render(request,"doctor/doc_leavereq.html")  
+
+
+
+def doc_request_view(request):
+    b=doctorleav.objects.filter(DOCID__LOGIN_id=request.session['lid'])
+    return render(request,"doctor/doc_leav_status.html",{'data':b})
+    
+
+def doc_view__req_serach(request):
+
+    laave_f=request.POST["n1"]
+
+    res=doctorleav.objects.filter(fro_m__startswith=laave_f)
+
+    return render(request,"doctor/doc_leav_status.html",{'data': res})
+
+def doc_cancel_bk(request,leaveid):
+     doctorleav.objects.filter(id=leaveid).delete()
+
+     return HttpResponse("<script>alert('success');window.location='/hospial/doc_request_view/'</script>")
+
+
+
+def admin_lev_view_doc(request):
+     levdoc=doctorleav.objects.all()
+
+     return render(request,"admin/admin_view_lv.html",{'data':levdoc})
+
+def admin_stafflv_view(request):
+    leavstaff=leavereq.objects.all()
+    return render(request,"admin/staff_lvreq_view.html",{'data':leavstaff})

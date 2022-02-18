@@ -1,6 +1,6 @@
-{% extends 'employes/employtemp.html' %}
+{% extends 'doctor/doctortemp.html' %}
 {% block body%}
-    <form method="post" action="/hospial/staff_view__req_serach/">
+    <form method="post" action="/hospial/doc_view__req_serach/">
     <table  class="table table-striped  table table-hover" >
         <tr>
             <td><input  type="date" value="" name="n1"><input class="btn btn-primary mb-2" type="submit" value="search"></td>
@@ -17,13 +17,13 @@
     <tr>
         <td>{{i.id}}</td>
        
-        <td>{{i.leave_need_date}}</td>
+        <td>{{i.fro_m}}</td>
         <td>{{i.to}}</td>
-       <td>{{i.des}}</td>
-       <td>pending</td>
-        <td>{{i.request_date}}</td>
+        <td>{{i.des}}</td>
+        <td>pending</td>
+        <td>{{i.reqdate}}</td>
        
-        <td><a href="/hospial/staff_cancel_bk/{{i.id}}">Cancel</a></td>
+        <td><a href="/hospial/doc_cancel_bk/{{i.id}}">Cancel</a></td>
     </tr>
     {% endfor %}
     </table> 

@@ -50,12 +50,19 @@ class schedule(models.Model) :
     added_date = models.CharField(max_length=50)
     DOCID= models.ForeignKey(doctor, on_delete=models.CASCADE, default=1)
 
-class leavereq(models.Model):
+class  leavereq(models.Model):
     STAFFID = models.ForeignKey(staff, on_delete=models.CASCADE, default=1)
-    leave_need_date= models.CharField(max_length=50)
-    # request_date = models.CharField(max_length=50)
-    des = models.CharField(max_length=50)
+    leave_need_date= models.CharField(max_length=50,default='1')
+    to=models.CharField(max_length=50 ,default='1')
+    request_date = models.CharField(max_length=50 ,default='1')
+    des = models.CharField(max_length=50 ,default='1')
 
+class doctorleav(models.Model):
+    fro_m=models.CharField(max_length=50,default='1')
+    to=models.CharField(max_length=50,default='1')
+    des=models.CharField(max_length=50,default='1')
+    DOCID= models.ForeignKey(doctor, on_delete=models.CASCADE, default=1)
+    reqdate=models.CharField(max_length=50 ,default='1')
 
 class attendance(models.Model):
     STAFFID = models.ForeignKey(staff, on_delete=models.CASCADE, default=1)

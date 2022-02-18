@@ -1,54 +1,56 @@
-<body>
-    <form>
+{% extends 'doctor/doctortemp.html' %}
+{% block body%}
 
 <h2>Profile</h2>
-<img src="/source/profile.jpg" width="40px" height="40px" alt="">
+<div class="text-center">
+<img class="rounded" src="{{i.dimage}}" width="200px" height="200px" alt="profile">
+</div>
 <br>
 <br>
-<table cellspacing="2"  cellpadding="5" border="0">
-    {% for i in data %}
+<table class=" table table-hover">
+   
     <tr>
-  
-<td >Name :</td>
+<td class="table-secondary"><b>Name :</b>   {{i.doctorname}}</td>
 
 </tr>
 <tr>
-<td >Place :</td>
+<td class="table-secondary"><b>Place :</b>  {{i.dplace}}</td>
 
 </tr>
 <tr>
-<td>Pin code:</td>
+<td class="table-secondary"><b>Pin code:</b>  {{i.dpin}}</td>
 
 </tr>
 <tr>
-    <td>Post:</td>
+    <td class="table-secondary"><b>Post:</b>  {{i.dpost}}</td>
  
     </tr>
 <tr>
-    <td>Department:</td>
+    <td class="table-secondary"><b>Department:</b>   {{i.DEPID}}</td>
    
     </tr>
     <tr>
-        <td>Gender:</td>
+        <td class="table-secondary"><b>Gender:</b>    {{i.dgender}}</td>
       
         </tr>
 </tr>
 <tr>
-<td >year of expreies :</td>
-
-</tr>
-<td >Emial :</td>
+<td class="table-secondary"><b>year of expreies :</b>    {{i.experience}}</td>
 
 </tr>
 <tr>
-    <td >licenes:</td>
+    <td class="table-secondary"><b>licence :</b>    {{i.licence}}</td>
     
     </tr>
+<td class="table-secondary"><b>Email :</b>  {{i.email}}</td>
+
+</tr>
+
     <tr>
-        <td > Phone no :</td>
+        <td class="table-secondary"><b> Phone no :</b>  {{i.phone}}</td>
       
         </tr>
+        
 </table>
-</form>
-</body>
+{%endblock%}
 

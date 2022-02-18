@@ -1,7 +1,7 @@
 
-{% extends 'employes/employtemp.html' %}
+{% extends 'doctor/doctortemp.html' %}
 {% block body%}
-<form method="post" action="/hospial/staff_req_post/" >
+<form method="post" action="/hospial/doc_req_post/" >
     <table class="table table-hover">
 <br>
 <h3><strong>Leave request form</strong></h3>
@@ -10,9 +10,9 @@
 <td class="table-active"><input class="form-control" type="date" id="birthday" name="from" randomly></td>
 </tr>
 <tr>
-    <td class="table-active"> <label for="from">to:</label></td>
-    <td class="table-active"><input class="form-control" type="date" id="birthday" name="to" randomly></td>
-    </tr>
+<td class="table-active"> <label for="from">to:</label></td>
+<td class="table-active"><input class="form-control" type="date" id="birthday" name="to" randomly></td>
+</tr>
 <tr>
     <td class="table-secondary">Reason</td>
     <td class="table-secondary"><textarea class="form-control" name="message" rows="10" cols="30"></textarea></td>
